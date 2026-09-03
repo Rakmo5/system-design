@@ -20,12 +20,10 @@ Track my interactive progress through the 5 phases of System Design below:
 
 | Phase | Modules Completed | Progress Percentage | Status |
 | :--- | :---: | :---: | :---: |
-| **Phase 1** | 0 / 8 | 0.0% | ⚪ Not Started |
-| **Phase 2** | 0 / 10 | 0.0% | ⚪ Not Started |
-| **Phase 3** | 0 / 10 | 0.0% | ⚪ Not Started |
-| **Phase 4** | 0 / 6 | 0.0% | ⚪ Not Started |
-| **Phase 5** | 0 / 6 | 0.0% | ⚪ Not Started |
 | **TOTAL** | **0 / 40** | **0.0%** | **🧠 Engineering Grind** |
+
+> 📱 **1-Tap Interactive Mobile Checklist**: You can directly tap & check off completed lessons on your phone here:  
+> 👉 [**Open Interactive Checkbox Issue #1**](https://github.com/Rakmo5/system-design/issues/1)
 
 ---
 

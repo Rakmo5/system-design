@@ -227,9 +227,10 @@ for p_name in ["Phase 1", "Phase 2", "Phase 3", "Phase 4", "Phase 5"]:
     indicator = "🟢 Active" if stats['completed'] > 0 else "⚪ Not Started"
     if stats['completed'] == stats['total'] and stats['total'] > 0:
         indicator = "🏆 Completed"
-    content += f"| **{p_name}** | {stats['completed']} / {stats['total']} | {p_pct:.1f}% | {indicator} |\n"
-
 content += f"""| **TOTAL** | **{completed_count} / {total_modules}** | **{pct:.1f}%** | **🧠 Engineering Grind** |
+
+> 📱 **1-Tap Interactive Mobile Checklist**: You can directly tap & check off completed lessons on your phone here:  
+> 👉 [**Open Interactive Checkbox Issue #1**](https://github.com/Rakmo5/system-design/issues/1)
 
 {active_card}
 
