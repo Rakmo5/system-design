@@ -11,6 +11,35 @@ if not os.path.exists(excel_path):
     print("Excel file not found at:", excel_path)
     exit(1)
 
+# Step 1: Check if README has [x] checkboxes edited on phone/GitHub and sync to Excel
+if os.path.exists(readme_path):
+    with open(readme_path, "r", encoding="utf-8") as f:
+        readme_text = f.read()
+    
+    # Find all table rows with checked [x]
+    # e.g., | 1 | ... | [x] Completed |
+    checked_nos = set()
+    for match in re.finditer(r'\|\s*(\d+)\s*\|.*?\|\s*(?:\[x\]|✅\s*\[x\])', readme_text, re.IGNORECASE):
+        checked_nos.add(int(match.group(1)))
+        
+    if checked_nos:
+        wb_sync = openpyxl.load_workbook(excel_path)
+        sheet_sync = wb_sync["Master Roadmap"]
+        updated_any = False
+        for r in range(2, sheet_sync.max_row + 1):
+            no_v = sheet_sync.cell(row=r, column=1).value
+            try:
+                if int(no_v) in checked_nos:
+                    if sheet_sync.cell(row=r, column=9).value != "Completed":
+                        sheet_sync.cell(row=r, column=9, value="Completed")
+                        updated_any = True
+            except (TypeError, ValueError):
+                continue
+        if updated_any:
+            wb_sync.save(excel_path)
+            print(f"Synced {len(checked_nos)} checked modules from README to Excel.")
+
+# Step 2: Load Excel to generate updated README & progress.svg
 wb = openpyxl.load_workbook(excel_path, data_only=True)
 sheet = wb["Master Roadmap"]
 
@@ -218,6 +247,8 @@ system-design/
 
 ## 📂 Complete 40-Module Learning Path
 
+> **💡 Checkbox Guide**: To mark a lesson completed on mobile or desktop, you can edit the README on GitHub and change `[ ]` to `[x]`, or update the Excel sheet!
+
 """
 
 for p_name in ["Phase 1", "Phase 2", "Phase 3", "Phase 4", "Phase 5"]:
@@ -230,12 +261,12 @@ for p_name in ["Phase 1", "Phase 2", "Phase 3", "Phase 4", "Phase 5"]:
 <summary><b>{title} ({stats['completed']}/{stats['total']} Completed)</b></summary>
 <br>
 
-| No. | Module Name | Key Concepts | Video Link | Practice Task | Status |
+| No. | Module Name | Key Concepts | Video Link | Practice Task | Checkbox Status |
 | :---: | :--- | :--- | :---: | :--- | :---: |
 """
     for m in p_mods:
-        status_icon = "✅ Completed" if m['completed'] else ("⏳ In Progress" if m['status'] == "In Progress" else "⚪ Not Started")
-        content += f"| {m['no']} | {m['name']} | `{m['skills']}` | [Watch Video]({m['pri_video']}) | {m['practice']} | {status_icon} |\n"
+        status_box = "`[x]` ✅ Completed" if m['completed'] else ("`[~]` ⏳ In Progress" if m['status'] == "In Progress" else "`[ ]` ⚪ Not Started")
+        content += f"| {m['no']} | {m['name']} | `{m['skills']}` | [Watch Video]({m['pri_video']}) | {m['practice']} | {status_box} |\n"
         
     content += "\n</details>\n"
 
@@ -245,8 +276,8 @@ content += """
 ## 🚀 How to Sync Progress
 
 Whenever you finish a video or practice task:
-1. Open `System_Design_Roadmap.xlsx` and change the Status to `Completed`.
-2. Double-click `sync.bat` (or run `python generate_readme.py` and `git push`).
+1. **Option A (Phone)**: Edit `README.md` on GitHub, change `[ ]` to `[x]`, and commit. Double-click `sync.bat` on laptop to sync back to Excel!
+2. **Option B (Laptop)**: Open `System_Design_Roadmap.xlsx`, change Status to `Completed`, and double-click `sync.bat`.
 
 *“Simplicity is prerequisite for reliability.” – Edsger W. Dijkstra.* 💻🚀
 """
@@ -254,4 +285,4 @@ Whenever you finish a video or practice task:
 with open(readme_path, "w", encoding="utf-8") as f:
     f.write(content)
 
-print(f"SUCCESS: Re-generated README.md and progress.svg for System Design! (Completed: {completed_count}/{total_modules})")
+print(f"SUCCESS: Re-generated README.md with Checkbox Status & progress.svg! (Completed: {completed_count}/{total_modules})")
