@@ -11,7 +11,7 @@ git add .
 
 echo [3/3] Committing and Pushing to GitHub...
 git commit -m "Update System Design progress in Excel and README"
-git push origin master
+git push origin main
 
 echo.
 echo ======================================================
