@@ -3,7 +3,7 @@
 Welcome to my personal **System Design & Distributed Systems** learning repository! This repo contains a comprehensive, 40-module structured path designed for SDE placement interviews, technical drives, and scalable backend architecture mastery.
 
 <p align="left">
-  <img src="https://img.shields.io/badge/System%20Design-0%20%2F%2040%20Completed-red?style=for-the-badge&logo=youtube" alt="Modules Completed">
+  <img src="https://img.shields.io/badge/System%20Design-1%20%2F%2040%20Completed-red?style=for-the-badge&logo=youtube" alt="Modules Completed">
   <img src="https://img.shields.io/badge/Track-SDE%20Placement-blue?style=for-the-badge" alt="Track">
   <img src="https://img.shields.io/badge/Focus-REST%20%7C%20SQL%20%7C%20HLD%20%7C%20LLD-orange?style=for-the-badge" alt="Focus">
 </p>
@@ -20,7 +20,12 @@ Track my interactive progress through the 5 phases of System Design below:
 
 | Phase | Modules Completed | Progress Percentage | Status |
 | :--- | :---: | :---: | :---: |
-| **TOTAL** | **0 / 40** | **0.0%** | **🧠 Engineering Grind** |
+| **Phase 1** | 1 / 8 | 12.5% | 🟢 Active |
+| **Phase 2** | 0 / 10 | 0.0% | ⚪ Not Started |
+| **Phase 3** | 0 / 10 | 0.0% | ⚪ Not Started |
+| **Phase 4** | 0 / 6 | 0.0% | ⚪ Not Started |
+| **Phase 5** | 0 / 6 | 0.0% | ⚪ Not Started |
+| **TOTAL** | **1 / 40** | **2.5%** | **🧠 Engineering Grind** |
 
 > 📱 **1-Tap Interactive Mobile Checklist**: You can directly tap & check off completed lessons on your phone here:  
 > 👉 [**Open Interactive Checkbox Issue #1**](https://github.com/Rakmo5/system-design/issues/1)
@@ -31,16 +36,16 @@ Track my interactive progress through the 5 phases of System Design below:
 
 > **📱 Mobile Dashboard**: Watch your current video lesson and review the key concept flashcards straight from your phone!
 
-### **Lesson #1: [Introduction to System Design: HLD vs LLD & Scalability Overview](https://www.youtube.com/watch?v=AK0hu0Zxua4)**
-* **Phase:** `Phase 1` | **Category:** `System Design Intro`
-* **Core Concepts:** `What is a System, Monolith vs Microservices, Vertical vs Horizontal scaling, System Design interview framework`
+### **Lesson #2: [How the Internet Works & Client-Server Architecture (DNS, IP, Routing)](https://www.youtube.com/watch?v=7_LPdttKXPc)**
+* **Phase:** `Phase 1` | **Category:** `Networking & Web`
+* **Core Concepts:** `DNS resolution, IP routing, Ports, Client/Server roles, Request-Response lifecycle`
 
 #### 🎥 Video Resources
-* ▶️ **Primary Video (Coder Army):** [Watch Video #1](https://www.youtube.com/watch?v=AK0hu0Zxua4)
-* 💡 **Supplementary Visual Guide:** [Watch Supplementary Deep-Dive](https://www.youtube.com/watch?v=i7twT3x5yv8)
+* ▶️ **Primary Video Resource:** [Watch Lesson #2 Video](https://www.youtube.com/watch?v=7_LPdttKXPc)
+* 💡 **Supplementary Visual Guide:** [Watch Supplementary Deep-Dive](https://www.youtube.com/watch?v=mpQZVYPuDGU)
 
 #### 🛠️ Hands-On Practice Task
-> **Assignment:** Write down the core difference between High-Level Design (HLD) and Low-Level Design (LLD)
+> **Assignment:** Write down the step-by-step trace of typing 'google.com' in a browser until the page renders
 
 ---
 
@@ -59,16 +64,14 @@ system-design/
 
 ## 📂 Complete 40-Module Learning Path
 
-> **💡 Checkbox Guide**: To mark a lesson completed on mobile or desktop, you can edit the README on GitHub and change `[ ]` to `[x]`, or update the Excel sheet!
-
 
 <details>
-<summary><b>🌐 Phase 1: Web, Networking & REST API Fundamentals (Lessons 1–8) (0/8 Completed)</b></summary>
+<summary><b>🌐 Phase 1: Web, Networking & REST API Fundamentals (Lessons 1–8) (1/8 Completed)</b></summary>
 <br>
 
 | No. | Module Name | Key Concepts | Video Link | Practice Task | Checkbox Status |
 | :---: | :--- | :--- | :---: | :--- | :---: |
-| 1 | Introduction to System Design: HLD vs LLD & Scalability Overview | `What is a System, Monolith vs Microservices, Vertical vs Horizontal scaling, System Design interview framework` | [Watch Video](https://www.youtube.com/watch?v=AK0hu0Zxua4) | Write down the core difference between High-Level Design (HLD) and Low-Level Design (LLD) | `[ ]` ⚪ Not Started |
+| 1 | Introduction to System Design: HLD vs LLD & Scalability Overview | `What is a System, Monolith vs Microservices, Vertical vs Horizontal scaling, System Design interview framework` | [Watch Video](https://www.youtube.com/watch?v=AK0hu0Zxua4) | Write down the core difference between High-Level Design (HLD) and Low-Level Design (LLD) | `[x]` ✅ Completed |
 | 2 | How the Internet Works & Client-Server Architecture (DNS, IP, Routing) | `DNS resolution, IP routing, Ports, Client/Server roles, Request-Response lifecycle` | [Watch Video](https://www.youtube.com/watch?v=7_LPdttKXPc) | Write down the step-by-step trace of typing 'google.com' in a browser until the page renders | `[ ]` ⚪ Not Started |
 | 3 | OSI & TCP/IP Model: TCP 3-Way Handshake vs UDP | `7 Layers vs 4 Layers, TCP 3-Way Handshake (SYN, SYN-ACK, ACK), Connection-oriented TCP vs Fast UDP` | [Watch Video](https://www.youtube.com/watch?v=vv4y_uOneC0) | Map real web protocols (HTTP, TCP, IP, Ethernet) to their respective OSI layers | `[ ]` ⚪ Not Started |
 | 4 | HTTP & HTTPS: Evolution (HTTP/1.1 vs HTTP/2 vs HTTP/3) & SSL/TLS Handshake | `Multiplexing, Head-of-line blocking, QUIC protocol, Symmetric vs Asymmetric encryption, TLS Handshake` | [Watch Video](https://www.youtube.com/watch?v=UMwQjFzTQXw) | Create a comparison table showing how HTTP/2 multiplexing solves HTTP/1.1 HOL blocking | `[ ]` ⚪ Not Started |
@@ -151,8 +154,8 @@ system-design/
 
 ## 🚀 How to Sync Progress
 
-Whenever you finish a video or practice task:
-1. **Option A (Phone)**: Edit `README.md` on GitHub, change `[ ]` to `[x]`, and commit. Double-click `sync.bat` on laptop to sync back to Excel!
-2. **Option B (Laptop)**: Open `System_Design_Roadmap.xlsx`, change Status to `Completed`, and double-click `sync.bat`.
+Whenever you check off an item on your phone via [Issue #1](https://github.com/Rakmo5/system-design/issues/1) or finish an Excel task:
+1. Double-click **`sync.bat`** (or run `python generate_readme.py && git push`).
+2. Your local Excel sheet, README, and animated progress bar will automatically synchronize in seconds!
 
 *“Simplicity is prerequisite for reliability.” – Edsger W. Dijkstra.* 💻🚀

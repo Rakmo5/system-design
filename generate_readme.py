@@ -1,6 +1,8 @@
 import openpyxl
 import os
 import re
+import urllib.request
+import json
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
 excel_path = os.path.join(script_dir, "System_Design_Roadmap.xlsx")
@@ -11,35 +13,49 @@ if not os.path.exists(excel_path):
     print("Excel file not found at:", excel_path)
     exit(1)
 
-# Step 1: Check if README has [x] checkboxes edited on phone/GitHub and sync to Excel
-if os.path.exists(readme_path):
-    with open(readme_path, "r", encoding="utf-8") as f:
-        readme_text = f.read()
-    
-    # Find all table rows with checked [x]
-    # e.g., | 1 | ... | [x] Completed |
-    checked_nos = set()
-    for match in re.finditer(r'\|\s*(\d+)\s*\|.*?\|\s*(?:\[x\]|✅\s*\[x\])', readme_text, re.IGNORECASE):
-        checked_nos.add(int(match.group(1)))
-        
-    if checked_nos:
-        wb_sync = openpyxl.load_workbook(excel_path)
-        sheet_sync = wb_sync["Master Roadmap"]
-        updated_any = False
-        for r in range(2, sheet_sync.max_row + 1):
-            no_v = sheet_sync.cell(row=r, column=1).value
-            try:
-                if int(no_v) in checked_nos:
-                    if sheet_sync.cell(row=r, column=9).value != "Completed":
-                        sheet_sync.cell(row=r, column=9, value="Completed")
-                        updated_any = True
-            except (TypeError, ValueError):
-                continue
-        if updated_any:
-            wb_sync.save(excel_path)
-            print(f"Synced {len(checked_nos)} checked modules from README to Excel.")
+# Step 1: Fetch checked boxes from GitHub Issue #1 (Public 1-tap mobile tracker)
+checked_from_issue = set()
+issue_url = "https://api.github.com/repos/Rakmo5/system-design/issues/1"
 
-# Step 2: Load Excel to generate updated README & progress.svg
+try:
+    req = urllib.request.Request(
+        issue_url,
+        headers={
+            "Accept": "application/vnd.github.v3+json",
+            "User-Agent": "SystemDesignTracker"
+        }
+    )
+    with urllib.request.urlopen(req, timeout=4) as resp:
+        data = json.loads(resp.read().decode('utf-8'))
+        body = data.get('body', '')
+        for line in body.splitlines():
+            m = re.search(r'-\s*\[[xX]\]\s*\[?(\d+)\.', line)
+            if m:
+                checked_from_issue.add(int(m.group(1)))
+    if checked_from_issue:
+        print(f"Fetched {len(checked_from_issue)} checked modules from GitHub Issue #1: {sorted(list(checked_from_issue))}")
+except Exception as e:
+    print("Note: Could not reach GitHub Issue API (offline mode):", e)
+
+# Step 2: Sync checked boxes to Excel
+if checked_from_issue:
+    wb_sync = openpyxl.load_workbook(excel_path)
+    sheet_sync = wb_sync["Master Roadmap"]
+    updated_any = False
+    for r in range(2, sheet_sync.max_row + 1):
+        no_v = sheet_sync.cell(row=r, column=1).value
+        try:
+            if int(no_v) in checked_from_issue:
+                if sheet_sync.cell(row=r, column=9).value != "Completed":
+                    sheet_sync.cell(row=r, column=9, value="Completed")
+                    updated_any = True
+        except (TypeError, ValueError):
+            continue
+    if updated_any:
+        wb_sync.save(excel_path)
+        print("Updated Excel file with checked modules from GitHub!")
+
+# Step 3: Load Excel to generate updated README & progress.svg
 wb = openpyxl.load_workbook(excel_path, data_only=True)
 sheet = wb["Master Roadmap"]
 
@@ -179,11 +195,19 @@ if active_module:
 * **Core Concepts:** `{a_skills}`
 
 #### 🎥 Video Resources
-* ▶️ **Primary Video (Coder Army):** [Watch Video #{a_no}]({a_pri})
+* ▶️ **Primary Video Resource:** [Watch Lesson #{a_no} Video]({a_pri})
 * 💡 **Supplementary Visual Guide:** [Watch Supplementary Deep-Dive]({a_sup})
 
 #### 🛠️ Hands-On Practice Task
 > **Assignment:** {a_prac}
+
+---
+"""
+else:
+    active_card = """---
+
+## 🏆 All 40 System Design Modules Completed!
+Congratulations on finishing the entire System Design Mastery Track! You are 100% prepared for SDE Architecture and Placement rounds.
 
 ---
 """
@@ -224,9 +248,9 @@ Track my interactive progress through the 5 phases of System Design below:
 for p_name in ["Phase 1", "Phase 2", "Phase 3", "Phase 4", "Phase 5"]:
     stats = phase_stats.get(p_name, {'total': 0, 'completed': 0})
     p_pct = (stats['completed'] / stats['total']) * 100 if stats['total'] else 0
-    indicator = "🟢 Active" if stats['completed'] > 0 else "⚪ Not Started"
-    if stats['completed'] == stats['total'] and stats['total'] > 0:
-        indicator = "🏆 Completed"
+    indicator = "🟢 Active" if (stats['completed'] > 0 and stats['completed'] < stats['total']) else ("⚪ Not Started" if stats['completed'] == 0 else "🏆 Completed")
+    content += f"| **{p_name}** | {stats['completed']} / {stats['total']} | {p_pct:.1f}% | {indicator} |\n"
+
 content += f"""| **TOTAL** | **{completed_count} / {total_modules}** | **{pct:.1f}%** | **🧠 Engineering Grind** |
 
 > 📱 **1-Tap Interactive Mobile Checklist**: You can directly tap & check off completed lessons on your phone here:  
@@ -247,8 +271,6 @@ system-design/
 ---
 
 ## 📂 Complete 40-Module Learning Path
-
-> **💡 Checkbox Guide**: To mark a lesson completed on mobile or desktop, you can edit the README on GitHub and change `[ ]` to `[x]`, or update the Excel sheet!
 
 """
 
@@ -276,9 +298,9 @@ content += """
 
 ## 🚀 How to Sync Progress
 
-Whenever you finish a video or practice task:
-1. **Option A (Phone)**: Edit `README.md` on GitHub, change `[ ]` to `[x]`, and commit. Double-click `sync.bat` on laptop to sync back to Excel!
-2. **Option B (Laptop)**: Open `System_Design_Roadmap.xlsx`, change Status to `Completed`, and double-click `sync.bat`.
+Whenever you check off an item on your phone via [Issue #1](https://github.com/Rakmo5/system-design/issues/1) or finish an Excel task:
+1. Double-click **`sync.bat`** (or run `python generate_readme.py && git push`).
+2. Your local Excel sheet, README, and animated progress bar will automatically synchronize in seconds!
 
 *“Simplicity is prerequisite for reliability.” – Edsger W. Dijkstra.* 💻🚀
 """
@@ -286,4 +308,4 @@ Whenever you finish a video or practice task:
 with open(readme_path, "w", encoding="utf-8") as f:
     f.write(content)
 
-print(f"SUCCESS: Re-generated README.md with Checkbox Status & progress.svg! (Completed: {completed_count}/{total_modules})")
+print(f"SUCCESS: Re-generated README.md with Live Issue Sync & progress.svg! (Completed: {completed_count}/{total_modules})")
