@@ -3,7 +3,7 @@
 Welcome to my personal **System Design & Distributed Systems** learning repository! This repo contains a comprehensive, 40-module structured path designed for SDE placement interviews, technical drives, and scalable backend architecture mastery.
 
 <p align="left">
-  <img src="https://img.shields.io/badge/System%20Design-1%20%2F%2040%20Completed-red?style=for-the-badge&logo=youtube" alt="Modules Completed">
+  <img src="https://img.shields.io/badge/System%20Design-3%20%2F%2040%20Completed-red?style=for-the-badge&logo=youtube" alt="Modules Completed">
   <img src="https://img.shields.io/badge/Track-SDE%20Placement-blue?style=for-the-badge" alt="Track">
   <img src="https://img.shields.io/badge/Focus-REST%20%7C%20SQL%20%7C%20HLD%20%7C%20LLD-orange?style=for-the-badge" alt="Focus">
 </p>
@@ -20,12 +20,12 @@ Track my interactive progress through the 5 phases of System Design below:
 
 | Phase | Modules Completed | Progress Percentage | Status |
 | :--- | :---: | :---: | :---: |
-| **Phase 1** | 1 / 8 | 12.5% | 🟢 Active |
+| **Phase 1** | 3 / 8 | 37.5% | 🟢 Active |
 | **Phase 2** | 0 / 10 | 0.0% | ⚪ Not Started |
 | **Phase 3** | 0 / 10 | 0.0% | ⚪ Not Started |
 | **Phase 4** | 0 / 6 | 0.0% | ⚪ Not Started |
 | **Phase 5** | 0 / 6 | 0.0% | ⚪ Not Started |
-| **TOTAL** | **1 / 40** | **2.5%** | **🧠 Engineering Grind** |
+| **TOTAL** | **3 / 40** | **7.5%** | **🧠 Engineering Grind** |
 
 > 📱 **1-Tap Interactive Mobile Checklist**: You can directly tap & check off completed lessons on your phone here:  
 > 👉 [**Open Interactive Checkbox Issue #1**](https://github.com/Rakmo5/system-design/issues/1)
@@ -36,16 +36,16 @@ Track my interactive progress through the 5 phases of System Design below:
 
 > **📱 Mobile Dashboard**: Watch your current video lesson and review the key concept flashcards straight from your phone!
 
-### **Lesson #2: [How the Internet Works & Client-Server Architecture (DNS, IP, Routing)](https://www.youtube.com/watch?v=7_LPdttKXPc)**
-* **Phase:** `Phase 1` | **Category:** `Networking & Web`
-* **Core Concepts:** `DNS resolution, IP routing, Ports, Client/Server roles, Request-Response lifecycle`
+### **Lesson #4: [HTTP & HTTPS: Evolution (HTTP/1.1 vs HTTP/2 vs HTTP/3) & SSL/TLS Handshake](https://www.youtube.com/watch?v=UMwQjFzTQXw)**
+* **Phase:** `Phase 1` | **Category:** `Web Protocols`
+* **Core Concepts:** `Multiplexing, Head-of-line blocking, QUIC protocol, Symmetric vs Asymmetric encryption, TLS Handshake`
 
 #### 🎥 Video Resources
-* ▶️ **Primary Video Resource:** [Watch Lesson #2 Video](https://www.youtube.com/watch?v=7_LPdttKXPc)
-* 💡 **Supplementary Visual Guide:** [Watch Supplementary Deep-Dive](https://www.youtube.com/watch?v=mpQZVYPuDGU)
+* ▶️ **Primary Video Resource:** [Watch Lesson #4 Video](https://www.youtube.com/watch?v=UMwQjFzTQXw)
+* 💡 **Supplementary Visual Guide:** [Watch Supplementary Deep-Dive](https://www.youtube.com/watch?v=hExRDVZHhig)
 
 #### 🛠️ Hands-On Practice Task
-> **Assignment:** Write down the step-by-step trace of typing 'google.com' in a browser until the page renders
+> **Assignment:** Create a comparison table showing how HTTP/2 multiplexing solves HTTP/1.1 HOL blocking
 
 ---
 
@@ -66,14 +66,14 @@ system-design/
 
 
 <details>
-<summary><b>🌐 Phase 1: Web, Networking & REST API Fundamentals (Lessons 1–8) (1/8 Completed)</b></summary>
+<summary><b>🌐 Phase 1: Web, Networking & REST API Fundamentals (Lessons 1–8) (3/8 Completed)</b></summary>
 <br>
 
 | No. | Module Name | Key Concepts | Video Link | Practice Task | Checkbox Status |
 | :---: | :--- | :--- | :---: | :--- | :---: |
 | 1 | Introduction to System Design: HLD vs LLD & Scalability Overview | `What is a System, Monolith vs Microservices, Vertical vs Horizontal scaling, System Design interview framework` | [Watch Video](https://www.youtube.com/watch?v=AK0hu0Zxua4) | Write down the core difference between High-Level Design (HLD) and Low-Level Design (LLD) | `[x]` ✅ Completed |
-| 2 | How the Internet Works & Client-Server Architecture (DNS, IP, Routing) | `DNS resolution, IP routing, Ports, Client/Server roles, Request-Response lifecycle` | [Watch Video](https://www.youtube.com/watch?v=7_LPdttKXPc) | Write down the step-by-step trace of typing 'google.com' in a browser until the page renders | `[ ]` ⚪ Not Started |
-| 3 | OSI & TCP/IP Model: TCP 3-Way Handshake vs UDP | `7 Layers vs 4 Layers, TCP 3-Way Handshake (SYN, SYN-ACK, ACK), Connection-oriented TCP vs Fast UDP` | [Watch Video](https://www.youtube.com/watch?v=vv4y_uOneC0) | Map real web protocols (HTTP, TCP, IP, Ethernet) to their respective OSI layers | `[ ]` ⚪ Not Started |
+| 2 | How the Internet Works & Client-Server Architecture (DNS, IP, Routing) | `DNS resolution, IP routing, Ports, Client/Server roles, Request-Response lifecycle` | [Watch Video](https://www.youtube.com/watch?v=7_LPdttKXPc) | Write down the step-by-step trace of typing 'google.com' in a browser until the page renders | `[x]` ✅ Completed |
+| 3 | OSI & TCP/IP Model: TCP 3-Way Handshake vs UDP | `7 Layers vs 4 Layers, TCP 3-Way Handshake (SYN, SYN-ACK, ACK), Connection-oriented TCP vs Fast UDP` | [Watch Video](https://www.youtube.com/watch?v=vv4y_uOneC0) | Map real web protocols (HTTP, TCP, IP, Ethernet) to their respective OSI layers | `[x]` ✅ Completed |
 | 4 | HTTP & HTTPS: Evolution (HTTP/1.1 vs HTTP/2 vs HTTP/3) & SSL/TLS Handshake | `Multiplexing, Head-of-line blocking, QUIC protocol, Symmetric vs Asymmetric encryption, TLS Handshake` | [Watch Video](https://www.youtube.com/watch?v=UMwQjFzTQXw) | Create a comparison table showing how HTTP/2 multiplexing solves HTTP/1.1 HOL blocking | `[ ]` ⚪ Not Started |
 | 5 | REST Architecture & 6 Guiding Constraints | `Statelessness, Client-Server separation, Cacheability, Uniform Interface, Layered System, Code-on-Demand` | [Watch Video](https://www.youtube.com/watch?v=-mN3VyJuCjM) | Explain why statelessness in REST makes horizontal backend scaling much easier | `[ ]` ⚪ Not Started |
 | 6 | HTTP Methods & Idempotency Deep Dive (GET, POST, PUT, PATCH, DELETE) | `Safe vs Idempotent methods. Why PUT is idempotent but POST is not. Handling double-payment submissions` | [Watch Video](https://www.youtube.com/watch?v=tkfVQK6UxDI) | Design REST endpoints for an E-Commerce Cart & Checkout order flow with correct methods | `[ ]` ⚪ Not Started |
